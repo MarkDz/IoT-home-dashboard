@@ -1,0 +1,430 @@
+[
+    {
+        "id": "d8c6db41.e43918",
+        "type": "tab",
+        "label": "Weather",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d6c7fa20.49f368",
+        "type": "ui_gauge",
+        "z": "d8c6db41.e43918",
+        "name": "",
+        "group": "715862cd.4b7b0c",
+        "order": 1,
+        "width": "6",
+        "height": "5",
+        "gtype": "gage",
+        "title": " Fullstack/Oasis",
+        "label": "",
+        "format": "{{value | number:1}}°C",
+        "min": "-10",
+        "max": "60",
+        "colors": [
+            "#00e4ff",
+            "#0caeb1",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 963.0000114440918,
+        "y": 136.00000095367432,
+        "wires": []
+    },
+    {
+        "id": "511305ed.c88aec",
+        "type": "mqtt in",
+        "z": "d8c6db41.e43918",
+        "name": "",
+        "topic": "temperature",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "a7f19dc4.e2bef",
+        "x": 108.00000762939453,
+        "y": 136.00000190734863,
+        "wires": [
+            [
+                "d6c7fa20.49f368",
+                "ac6f.ab9f639158"
+            ]
+        ]
+    },
+    {
+        "id": "18e830d.b2efecf",
+        "type": "mqtt in",
+        "z": "d8c6db41.e43918",
+        "name": "",
+        "topic": "home/humid",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "a7f19dc4.e2bef",
+        "x": 95,
+        "y": 48.00000190734863,
+        "wires": [
+            [
+                "36dbe4cd.55b8dc",
+                "ac6f.ab9f639158"
+            ]
+        ]
+    },
+    {
+        "id": "36dbe4cd.55b8dc",
+        "type": "ui_gauge",
+        "z": "d8c6db41.e43918",
+        "name": "",
+        "group": "715862cd.4b7b0c",
+        "order": 2,
+        "width": "6",
+        "height": "5",
+        "gtype": "gage",
+        "title": " Fullstack/Oasis",
+        "label": "",
+        "format": "{{value | number:1}}%",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#00e4ff",
+            "#0caeb1",
+            "#3f2ed3"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 962.0000133514404,
+        "y": 47,
+        "wires": []
+    },
+    {
+        "id": "ac6f.ab9f639158",
+        "type": "ui_chart",
+        "z": "d8c6db41.e43918",
+        "name": "",
+        "group": "715862cd.4b7b0c",
+        "order": 7,
+        "width": "12",
+        "height": "5",
+        "label": " ",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#000000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 849.7001113891602,
+        "y": 92.00000095367432,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d32eafcc.18c95",
+        "type": "wunderground in",
+        "z": "d8c6db41.e43918",
+        "name": "KNYNEWYO1202",
+        "lon": "",
+        "lat": "",
+        "city": "Queens",
+        "country": "US",
+        "x": 120,
+        "y": 300,
+        "wires": [
+            [
+                "962fdb8a.d52d78",
+                "bf398c6f.ad034",
+                "43528138.acbca"
+            ]
+        ]
+    },
+    {
+        "id": "fdeed25d.8381e",
+        "type": "debug",
+        "z": "d8c6db41.e43918",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 730,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "64ac0695.742ca8",
+        "type": "ui_text",
+        "z": "d8c6db41.e43918",
+        "group": "715862cd.4b7b0c",
+        "order": 4,
+        "width": "3",
+        "height": "3",
+        "name": "Out Temp",
+        "label": "<font size=\"6\">Outside",
+        "format": "<font size=\"8\">{{msg.payload.consolidated_weather[0].the_temp_F}}°F",
+        "layout": "col-center",
+        "x": 901.7000122070312,
+        "y": 262.40000438690186,
+        "wires": []
+    },
+    {
+        "id": "ec23d0ea.d66d6",
+        "type": "ui_text",
+        "z": "d8c6db41.e43918",
+        "group": "715862cd.4b7b0c",
+        "order": 5,
+        "width": "3",
+        "height": "3",
+        "name": "",
+        "label": "Wind Speed",
+        "format": "<font size=\"6\">{{payload.wind_speed | number:1}}Km/h",
+        "layout": "col-center",
+        "x": 911.7000122070312,
+        "y": 309.40000438690186,
+        "wires": []
+    },
+    {
+        "id": "bf398c6f.ad034",
+        "type": "function",
+        "z": "d8c6db41.e43918",
+        "name": "Convert Wind Direction",
+        "func": "var winddir = msg.payload.winddirection;\nif (winddir > 337.5 || winddir < 22.5){\n    msg.payload = \"/WindDir/windn.png\";\n}\nelse if (winddir >= 22.5 || winddir < 67.5){\n    msg.payload = \"/WindDir/windne.png\";\n}\nelse if (winddir >= 67.5 || winddir < 112.5){\n    msg.payload = \"/WindDir/winde.png\";\n}\nelse if (winddir >= 112.5 || winddir < 157.5){\n    msg.payload = \"/WindDir/windse.png\";\n}\nelse if (winddir >= 157.5 || winddir < 202.5){\n    msg.payload = \"/WindDir/winds.png\";\n}\nelse if (winddir >= 202.5 || winddir < 247.5){\n    msg.payload = \"/WindDir/windsw.png\";\n}\nelse if (winddir >= 247.5 || winddir < 292.5){\n    msg.payload = \"/WindDir/windw.png\";\n}\nelse if (winddir >= 292.5 || winddir < 237.5){\n    msg.payload = \"/WindDir/windnw.png\";\n}\nelse msg.payload = \"/myimages/unknown.png\";\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 360,
+        "wires": [
+            [
+                "665057a4.92cb68"
+            ]
+        ]
+    },
+    {
+        "id": "962fdb8a.d52d78",
+        "type": "function",
+        "z": "d8c6db41.e43918",
+        "name": "Convert Weather info to image",
+        "func": "if (msg.payload.weather == \"Clear\" || msg.payload.weather == \"Sunny\"){\n    msg.payload = \"/myimages/clear.png\";\n}\nelse if (msg.payload.weather == \"Cloudy\" || msg.payload.weather == \"Overcast\"){\n    msg.payload = \"/myimages/cloudy.png\";\n}\nelse if (msg.payload.weather == \"Fog\"){\n    msg.payload = \"/myimages/fog.png\";\n}\nelse if (msg.payload.weather == \"Mostly Cloudy\" || msg.payload.weather == \"Partly Sunny\"){\n    msg.payload = \"/myimages/mostlycloudy.png\";\n}\nelse if (msg.payload.weather == \"Partly Cloudy\" || msg.payload.weather == \"Mostly Sunny\"){\n    msg.payload = \"/myimages/partlycloudy.png\";\n}\nelse if (msg.payload.weather == \"Rain\"){\n    msg.payload = \"/myimages/rain.png\";\n}\nelse if (msg.payload.weather == \"Snow\" || msg.payload.weather == \"Sleet\" || msg.payload.weather == \"Freezing Rain\"){\n    msg.payload = \"/myimages/snow.png\";\n}\nelse if (msg.payload.weather == \"Thunderstorms\" || msg.payload.weather == \"Thunderstorm\"){\n    msg.payload = \"/myimages/tstorms.png\";\n}\nelse msg.payload = \"/myimages/unknown.png\";\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 420,
+        "wires": [
+            [
+                "21835a12.08af56"
+            ]
+        ]
+    },
+    {
+        "id": "21835a12.08af56",
+        "type": "ui_template",
+        "z": "d8c6db41.e43918",
+        "group": "715862cd.4b7b0c",
+        "name": " HTML Template",
+        "order": 3,
+        "width": "3",
+        "height": "3",
+        "format": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src={{msg.payload}} width=\"128\" height=\"128\"/></p>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 900,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "665057a4.92cb68",
+        "type": "ui_template",
+        "z": "d8c6db41.e43918",
+        "group": "715862cd.4b7b0c",
+        "name": " HTML Wind Dir",
+        "order": 6,
+        "width": "3",
+        "height": "3",
+        "format": "<p>&nbsp;</p>\n<p><img style=\"display: block; margin-top: auto; margin-bottom: auto; margin-left: auto; margin-right: auto;\" src={{msg.payload}} width=\"92\" height=\"92\"/></p>",
+        "storeOutMessages": true,
+        "fwdInMessages": false,
+        "templateScope": "local",
+        "x": 900,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ab38da23.30bfe8",
+        "type": "mosca in",
+        "z": "d8c6db41.e43918",
+        "mqtt_port": 1883,
+        "mqtt_ws_port": 8080,
+        "name": "",
+        "username": "",
+        "password": "",
+        "dburl": "",
+        "x": 120,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "43528138.acbca",
+        "type": "debug",
+        "z": "d8c6db41.e43918",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 450,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "af9951be.db0b",
+        "type": "http request",
+        "z": "d8c6db41.e43918",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": false,
+        "url": "https://www.metaweather.com/api/location/2459115",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 270,
+        "y": 200,
+        "wires": [
+            [
+                "b6207393.6023e",
+                "493e911d.f6f51"
+            ]
+        ]
+    },
+    {
+        "id": "e782170d.8d6108",
+        "type": "inject",
+        "z": "d8c6db41.e43918",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "600",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 200,
+        "wires": [
+            [
+                "af9951be.db0b"
+            ]
+        ]
+    },
+    {
+        "id": "b6207393.6023e",
+        "type": "change",
+        "z": "d8c6db41.e43918",
+        "name": "temp_conv",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.consolidated_weather[0].the_temp_F",
+                "pt": "msg",
+                "to": "$round((msg.payload.consolidated_weather[0].the_temp * 9/5) + 32, 1)\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 200,
+        "wires": [
+            [
+                "fdeed25d.8381e",
+                "64ac0695.742ca8"
+            ]
+        ]
+    },
+    {
+        "id": "493e911d.f6f51",
+        "type": "function",
+        "z": "d8c6db41.e43918",
+        "name": "",
+        "func": "msg.payload = msg.payload.consolidated_weather[0]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
+        "y": 280,
+        "wires": [
+            [
+                "ec23d0ea.d66d6"
+            ]
+        ]
+    },
+    {
+        "id": "715862cd.4b7b0c",
+        "type": "ui_group",
+        "z": "",
+        "name": "Default",
+        "tab": "a089a6f4.f13148",
+        "disp": false,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "a7f19dc4.e2bef",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "192.168.200.5",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "a089a6f4.f13148",
+        "type": "ui_tab",
+        "name": "Tab 1",
+        "icon": "dashboard",
+        "order": 1
+    }
+]
